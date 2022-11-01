@@ -3,7 +3,11 @@
     <div>
       <v-list>
         <v-list-item-group>
-          <list-box />
+          <list-box
+            v-for="exTodo in exTodos"
+            :key="exTodo.id"
+            :exTodo="exTodo"
+          />
         </v-list-item-group>
       </v-list>
     </div>
@@ -25,6 +29,7 @@ export default {
       checkColor: "",
       exTodos: [],
       updateAt: [],
+      todos: [],
     };
   },
   created() {
@@ -32,20 +37,32 @@ export default {
   },
   methods: {
     divTodos() {
-      // let set = [];
-      // for (let i = 0; i < this.getExTodos.length; i++) {
-      //   set.unshift(this.getExTodos[i].updateAt.substr(0, 10));
-      //   this.updateAt = new Set(set);
-      // }
-      // this.getExTodos.map((x) => {
-      //   console.log(x);
-      // });
+      let set = [];
+      let setData = [];
+      for (let i = 0; i < this.myExTodos.length; i++) {
+        set.push(this.myExTodos[i].updateTime.substring(0, 10));
+      }
+      setData = new Set(set);
+      this.updateAt = [...setData];
+      for (let idx = 0; idx < this.updateAt.length; idx++) {
+        this.exTodos[idx] = new Array();
+        this.myExTodos.map((x) => {
+          if (
+            x.updateTime.substring(0, 10) ===
+            this.updateAt[idx].substring(0, 10)
+          ) {
+            console.log("x = ", x);
+            this.exTodos[idx].push(x);
+          }
+        });
+      }
+      console.log("this.exTodos = ", this.exTodos);
     },
   },
   computed: {
-    getExTodos() {
-      return this.$store.state.loadMyExTodos;
-    },
+    // getExTodos() {
+    //   return this.$store.state.loadMyExTodos;
+    // },
   },
 };
 </script>

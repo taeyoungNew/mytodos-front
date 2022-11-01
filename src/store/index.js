@@ -10,28 +10,7 @@ export default new Vuex.Store({
     setMe: null,
     todoList: [],
     loadTodos: [],
-    loadMyExTodos: [
-      {
-        id: 1,
-        todoContent: "과자먹기",
-        updateTime: "2022-10-29 02:59",
-      },
-      {
-        id: 2,
-        todoContent: "냉면먹기",
-        updateTime: "2022-10-29 02:59",
-      },
-      {
-        id: 3,
-        todoContent: "치킨먹기",
-        updateTime: "2022-10-30 02:59",
-      },
-      {
-        id: 4,
-        todoContent: "피자먹기",
-        updateTime: "2022-10-30 02:59",
-      },
-    ],
+    loadMyExTodos: [],
   },
   getters: {
     GETTERS_MY_TODOS(state) {
@@ -57,7 +36,6 @@ export default new Vuex.Store({
       state.todoList = payload;
     },
     LOAD_MY_EXTODOS(state, payload) {
-      // console.log("LOAD_MY_EXTODOS = ", payload);
       state.loadMyExTodos = payload;
     },
     REMOVE_TODO(state, payload) {
@@ -165,10 +143,9 @@ export default new Vuex.Store({
           let exTodos = [];
           myTodos.map((x) => {
             if (x.updateTime.substr(0, 10) == today.substring(0, 10)) {
-              // console.log(x);
               todos.unshift(x);
               context.commit("LOAD_MY_TODOS", todos);
-            } else {
+            } else if (x.updateTime.substr(0, 10) !== today.substring(0, 10)) {
               exTodos.unshift(x);
               context.commit("LOAD_MY_EXTODOS", exTodos);
             }
