@@ -9,7 +9,7 @@ const routes = [
     component: () => import("@/views/ShowListsView.vue"),
   },
   {
-    path: "/signup",
+    path: "/SignupView",
     component: () => import("@/views/SignupView.vue"),
   },
   {

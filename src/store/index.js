@@ -132,7 +132,20 @@ export default new Vuex.Store({
         });
     },
     ON_LOGOUT(context) {
-      context.commit("ON_LOGOUT");
+      axios
+        .post(
+          "http://localhost:3010/user/logout",
+          {},
+          {
+            withCredentials: true,
+          }
+        )
+        .then(() => {
+          context.commit("ON_LOGOUT");
+        })
+        .catch((err) => {
+          console.log(err);
+        });
     },
     LOAD_MY_TODOS(context) {
       axios

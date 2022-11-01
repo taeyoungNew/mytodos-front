@@ -27,7 +27,7 @@
           <v-list nav dense>
             <v-list-item link>
               <v-list-item-icon>
-                <font-awesome-icon icon="fa-solid fa-pen" />
+                <font-awesome-icon icon="fa-solid fa-pen" style="color: gray" />
               </v-list-item-icon>
               <v-list-item-title @click="showLists">
                 TodoList확인!
@@ -45,10 +45,13 @@
               </v-list-item-icon>
               <v-list-item-title>지금까지 리스트 보기</v-list-item-title>
             </v-list-item>
-            <v-list-item>
-              <v-list-item-title class="logoutBtn" @click="onLogout"
-                >로그아웃</v-list-item-title
-              >
+            <v-list-item link>
+              <v-list-item-icon>
+                <v-icon>mdi-account-off</v-icon>
+              </v-list-item-icon>
+              <v-list-item @click="onLogout">
+                <v-list-item-title> 로그아웃 </v-list-item-title>
+              </v-list-item>
             </v-list-item>
           </v-list>
         </v-navigation-drawer>
@@ -68,7 +71,7 @@
             ></v-app-bar-nav-icon>
           </v-col>
           <v-col cols="3" v-else>
-            <router-link to="/signup">로그인/회원가입</router-link>
+            <router-link to="/SignupView">로그인/회원가입</router-link>
           </v-col>
         </v-row>
       </template>
@@ -98,8 +101,10 @@ export default {
     showLists() {
       this.$router.push("/MainView");
     },
-    onLogout() {
-      this.$store.dispatch("ON_LOGOUT");
+    async onLogout() {
+      await this.$store.dispatch("ON_LOGOUT");
+      this.$router.push("/");
+      this.drawer = false;
     },
   },
 };
@@ -117,9 +122,9 @@ export default {
 .home-button {
   margin: 20px;
 }
-.logoutBtn {
+/* .logoutBtn {
   cursor: pointer;
-}
+} */
 .login-signup {
   margin-left: 30px;
 }
