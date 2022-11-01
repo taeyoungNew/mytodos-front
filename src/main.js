@@ -11,13 +11,21 @@ import {
   faTrashCan,
   faPenToSquare,
   faCheck,
+  faPowerOff,
 } from "@fortawesome/free-solid-svg-icons";
 // import VueCookie from "vue-cookie";
 
 Vue.config.productionTip = false;
 
 // library.add(faUserSecret);
-library.add(faPen, faSquarePlus, faTrashCan, faPenToSquare, faCheck);
+library.add(
+  faPen,
+  faSquarePlus,
+  faTrashCan,
+  faPenToSquare,
+  faCheck,
+  faPowerOff
+);
 Vue.component("font-awesome-icon", FontAwesomeIcon);
 // Vue.use(VueCookie);
 new Vue({
