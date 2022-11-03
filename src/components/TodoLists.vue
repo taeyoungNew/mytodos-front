@@ -1,19 +1,15 @@
 <template>
-  <v-card class="ma-auto list-card" tile max-width="80%">
-    <div>
-      <v-list>
-        <v-list-item-group>
-          <list-box />
-        </v-list-item-group>
-      </v-list>
-    </div>
+  <v-card class="ma-auto list-card" tile>
+    {{ myExTodos }}
   </v-card>
 </template>
 
 <script>
-import ListBox from "./common/ListBox.vue";
+// import ListBox from "./common/ListBox.vue";
 export default {
-  components: { ListBox },
+  components: {
+    // ListBox,
+  },
   props: {
     myExTodos: {
       type: Array,
@@ -25,26 +21,46 @@ export default {
       checkColor: "",
       exTodos: [],
       updateAt: [],
+      // value: "[[1,2,3,4,],[1,2,3,4,,5,]]",
     };
   },
-  created() {
-    this.divTodos();
-  },
   methods: {
-    divTodos() {
-      // let set = [];
-      // for (let i = 0; i < this.getExTodos.length; i++) {
-      //   set.unshift(this.getExTodos[i].updateAt.substr(0, 10));
-      //   this.updateAt = new Set(set);
-      // }
-      // this.getExTodos.map((x) => {
-      //   console.log(x);
-      // });
+    async divTodos(payload) {
+      console.log("divTodos");
+      const myExTodos = payload;
+      let set = [];
+      let setData = [];
+      for (let i = 0; i < myExTodos.length; i++) {
+        await set.push(myExTodos[i].updateTime.substring(0, 10));
+      }
+      setData = new Set(set);
+      this.updateAt = [...setData];
+      for (let idx = 0; idx < this.updateAt.length; idx++) {
+        this.exTodos[idx] = new Array();
+        await myExTodos.map((x) => {
+          if (
+            x.updateTime.substring(0, 10) ===
+            this.updateAt[idx].substring(0, 10)
+          ) {
+            this.exTodos[idx].push(x);
+          }
+        });
+      }
+      // this.$store.dispatch("EX_TODOS", this.exTodos);
+      console.log("this.exTodos = ", this.exTodos);
+      // this.value = 5;
     },
   },
   computed: {
-    getExTodos() {
-      return this.$store.state.loadMyExTodos;
+    isMyExTodos() {
+      return this.myExTodos;
+    },
+  },
+  watch: {
+    isMyExTodos(payload) {
+      console.log("isExTodos = ", payload);
+      this.divTodos(payload);
+      // this.value[3][0] = 1;
     },
   },
 };

@@ -8,30 +8,11 @@ Vue.use(Vuex);
 export default new Vuex.Store({
   state: {
     setMe: null,
-    todoList: [],
+    todoList: [{}],
     loadTodos: [],
-    loadMyExTodos: [
-      {
-        id: 1,
-        todoContent: "과자먹기",
-        updateTime: "2022-10-29 02:59",
-      },
-      {
-        id: 2,
-        todoContent: "냉면먹기",
-        updateTime: "2022-10-29 02:59",
-      },
-      {
-        id: 3,
-        todoContent: "치킨먹기",
-        updateTime: "2022-10-30 02:59",
-      },
-      {
-        id: 4,
-        todoContent: "피자먹기",
-        updateTime: "2022-10-30 02:59",
-      },
-    ],
+    loadMyExTodos: [],
+    exTodos: [],
+    persent: 0,
   },
   getters: {
     GETTERS_MY_TODOS(state) {
@@ -39,6 +20,10 @@ export default new Vuex.Store({
     },
   },
   mutations: {
+    EX_TODOS(state, payload) {
+      console.log("mutation = ", payload);
+      state.exTodos = [...payload];
+    },
     ADD_TODO(state, payload) {
       state.todoList.unshift(payload);
     },
@@ -57,7 +42,6 @@ export default new Vuex.Store({
       state.todoList = payload;
     },
     LOAD_MY_EXTODOS(state, payload) {
-      // console.log("LOAD_MY_EXTODOS = ", payload);
       state.loadMyExTodos = payload;
     },
     REMOVE_TODO(state, payload) {
@@ -79,6 +63,10 @@ export default new Vuex.Store({
     },
   },
   actions: {
+    EX_TODOS(context, payload) {
+      // console.log("EX_TODOS = ", payload);
+      context.dispatch("EX_TODOS", payload);
+    },
     ADD_TODO(context, payload) {
       // console.log(getDate());
       const userInfo = context.state.setMe;
@@ -165,10 +153,9 @@ export default new Vuex.Store({
           let exTodos = [];
           myTodos.map((x) => {
             if (x.updateTime.substr(0, 10) == today.substring(0, 10)) {
-              // console.log(x);
               todos.unshift(x);
               context.commit("LOAD_MY_TODOS", todos);
-            } else {
+            } else if (x.updateTime.substr(0, 10) !== today.substring(0, 10)) {
               exTodos.unshift(x);
               context.commit("LOAD_MY_EXTODOS", exTodos);
             }
@@ -191,8 +178,7 @@ export default new Vuex.Store({
             withCredentials: true,
           }
         )
-        .then((res) => {
-          console.log(res);
+        .then(() => {
           context.commit("CHECK_TODO", payload);
         })
         .catch((err) => {
