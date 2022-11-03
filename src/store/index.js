@@ -8,9 +8,11 @@ Vue.use(Vuex);
 export default new Vuex.Store({
   state: {
     setMe: null,
-    todoList: [],
+    todoList: [{}],
     loadTodos: [],
     loadMyExTodos: [],
+    exTodos: [],
+    persent: 0,
   },
   getters: {
     GETTERS_MY_TODOS(state) {
@@ -18,6 +20,10 @@ export default new Vuex.Store({
     },
   },
   mutations: {
+    EX_TODOS(state, payload) {
+      console.log("mutation = ", payload);
+      state.exTodos = [...payload];
+    },
     ADD_TODO(state, payload) {
       state.todoList.unshift(payload);
     },
@@ -57,6 +63,10 @@ export default new Vuex.Store({
     },
   },
   actions: {
+    EX_TODOS(context, payload) {
+      // console.log("EX_TODOS = ", payload);
+      context.dispatch("EX_TODOS", payload);
+    },
     ADD_TODO(context, payload) {
       // console.log(getDate());
       const userInfo = context.state.setMe;
@@ -168,8 +178,7 @@ export default new Vuex.Store({
             withCredentials: true,
           }
         )
-        .then((res) => {
-          console.log(res);
+        .then(() => {
           context.commit("CHECK_TODO", payload);
         })
         .catch((err) => {

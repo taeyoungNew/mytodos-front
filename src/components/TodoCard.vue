@@ -91,7 +91,7 @@ export default {
         todoId: todoId,
         done: this.todoStatus,
       };
-      console.log("payload=", payload);
+      // console.log("payload=", payload);
       this.$store
         .dispatch("CHECK_TODO", payload)
         .then(() => {
@@ -102,6 +102,7 @@ export default {
             this.checkColor = "gray";
             this.check = "black";
           }
+          this.$emit("checkTodo");
         })
         .catch((err) => {
           console.log(err);

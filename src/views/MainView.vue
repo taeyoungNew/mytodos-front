@@ -3,8 +3,8 @@
     <div class="main-content">
       <v-row no-gutters>
         <v-col class="achv-rate">
-          <v-card class="pa-3">
-            <div></div>
+          <v-card class="pa-3 chart-box">
+            <chart-component :persent="persent" />
           </v-card>
         </v-col>
         <v-col>
@@ -42,19 +42,19 @@
         </v-col>
       </v-row>
     </div>
-    <div class="todo-lists">
-      <todo-lists :myExTodos="getMyExTodos" />
-    </div>
+    <div class="todo-lists"></div>
   </div>
 </template>
 
 <script>
 import TodoCard from "@/components/TodoCard.vue";
-import TodoLists from "@/components/TodoLists.vue";
+import ChartComponent from "@/components/ChartComponent.vue";
+// import TodoLists from "@/components/TodoLists.vue";
 export default {
-  components: { TodoCard, TodoLists },
+  components: { TodoCard, ChartComponent },
   data() {
     return {
+      persent: 0,
       myTodos: [],
       id: 0,
       valid: false,
@@ -137,7 +137,6 @@ export default {
   },
   watch: {
     getMyTodos(payload) {
-      console.log("getMyTodos의 값이 변경");
       return payload;
     },
   },
@@ -151,6 +150,9 @@ export default {
   height: 100vh;
   margin-left: auto;
   margin-right: auto;
+}
+.chart-box {
+  height: 550px;
 }
 .todos-card {
   max-height: 550px;

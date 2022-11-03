@@ -13,7 +13,6 @@ import {
   faCheck,
   faPowerOff,
 } from "@fortawesome/free-solid-svg-icons";
-// import VueCookie from "vue-cookie";
 
 Vue.config.productionTip = false;
 
