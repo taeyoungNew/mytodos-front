@@ -8,7 +8,7 @@ Vue.use(Vuex);
 export default new Vuex.Store({
   state: {
     setMe: null,
-    todoList: [{}],
+    todoList: [],
     loadTodos: [],
     loadMyExTodos: [],
     exTodos: [],
@@ -17,6 +17,9 @@ export default new Vuex.Store({
   getters: {
     GETTERS_MY_TODOS(state) {
       return state.todoList;
+    },
+    GET_MY_EXTODOS(state) {
+      return state.loadMyExTodos;
     },
   },
   mutations: {
@@ -37,6 +40,9 @@ export default new Vuex.Store({
     },
     ON_LOGOUT(state) {
       state.setMe = null;
+      state.todoList = [];
+      state.loadTodos = [];
+      state.loadMyExTodos = [];
     },
     LOAD_MY_TODOS(state, payload) {
       state.todoList = payload;

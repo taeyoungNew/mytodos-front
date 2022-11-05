@@ -1,18 +1,33 @@
 <template>
   <div>
-    <v-card outlined class="mx-auto" color="#26c6da" dark max-width="1000">
-      <v-card-title>
-        <v-icon large left> mdi-twitter </v-icon>
-        2022-11-02
-      </v-card-title>
-      <v-card-text class="pa-5 font-weight-bold">
-        <v-icon left>mdi-check-outline</v-icon>
-        봄이 산책시키기
-      </v-card-text>
-      <v-card-text class="pa-5 font-weight-bold">
-        <v-icon left>mdi-check-outline</v-icon>
-        투두리스트 공유페이지
-      </v-card-text>
+    <v-card class="mx-auto" color="#26c6da" dark max-width="1000">
+      <v-card outlined class="mx-auto" color="#26c6da" max-width="1000">
+        <v-card-title>
+          <v-icon large left> mdi-notebook-edit </v-icon>
+          {{ exTodo[0].updateTime.substr(0, 10) }}
+        </v-card-title>
+        <div v-for="(item, index) in exTodo" :key="index">
+          <v-card-text class="pa-5 font-weight-bold">
+            <v-icon v-if="item.done" left>mdi-check-bold</v-icon>
+            <v-icon v-else left>mdi-check-outline</v-icon>
+            {{ item.todoContent }}
+          </v-card-text>
+        </div>
+      </v-card>
+      <!-- <v-card-actions>
+        <v-list-item class="grow">
+          <v-list-item-avatar colo="grey darken-3">
+            <v-img
+              class="elevation-6"
+              alt=""
+              src="https://avataaars.io/?avatarStyle=Transparent&topType=ShortHairShortCurly&accessoriesType=Prescription02&hairColor=Black&facialHairType=Blank&clotheType=Hoodie&clotheColor=White&eyeType=Default&eyebrowType=DefaultNatural&mouthType=Default&skinColor=Light"
+            ></v-img>
+          </v-list-item-avatar>
+          <v-list-item-content>
+            <v-list-item-title>민태영</v-list-item-title>
+          </v-list-item-content>
+        </v-list-item>
+      </v-card-actions> -->
     </v-card>
   </div>
 </template>
@@ -20,7 +35,7 @@
 <script>
 export default {
   props: {
-    exTodos: {
+    exTodo: {
       type: Array,
       require: true,
     },
