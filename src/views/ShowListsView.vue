@@ -2,25 +2,7 @@
   <div id="main">
     <div class="todo-lists">
       <v-row>
-        <v-col class="mt-3" cols="12">
-          <v-card class="mx-auto" color="#26c6da" dark max-width="1000">
-            <list-box></list-box>
-            <v-card-actions>
-              <v-list-item class="grow">
-                <v-list-item-avatar colo="grey darken-3">
-                  <v-img
-                    class="elevation-6"
-                    alt=""
-                    src="https://avataaars.io/?avatarStyle=Transparent&topType=ShortHairShortCurly&accessoriesType=Prescription02&hairColor=Black&facialHairType=Blank&clotheType=Hoodie&clotheColor=White&eyeType=Default&eyebrowType=DefaultNatural&mouthType=Default&skinColor=Light"
-                  ></v-img>
-                </v-list-item-avatar>
-                <v-list-item-content>
-                  <v-list-item-title>민태영</v-list-item-title>
-                </v-list-item-content>
-              </v-list-item>
-            </v-card-actions>
-          </v-card>
-        </v-col>
+        <v-col class="mt-3" cols="12"> </v-col>
         <v-col class="mt-3" cols="12">
           <v-card class="mx-auto" color="#26c6da" dark max-width="1000">
             <list-box></list-box>

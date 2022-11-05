@@ -1,7 +1,7 @@
 <template>
   <Bar
     :chart-data="chartData"
-    :width="600"
+    :width="950"
     :height="500"
     :chart-options="chartOptions"
   />
@@ -87,10 +87,10 @@ export default {
         todos++;
       });
       let persent = (count / todos) * 100;
-      console.log("persent = ", persent);
+      // console.log("persent = ", persent);
       //  = persent;
       this.isPersent = persent;
-      console.log("chart - ", this.chartData.datasets[0].data[0]);
+      // console.log("chart - ", this.chartData.datasets[0].data[0]);
       this.chartData = {
         labels: ["오늘 달성%"],
         datasets: [
@@ -111,7 +111,7 @@ export default {
     getMyTodos: {
       deep: true,
       async handler() {
-        console.log("변경감지");
+        // console.log("변경감지");
         await this.checkTodo();
         this.chartData.datasets[0].data[0] = this.persent;
       },

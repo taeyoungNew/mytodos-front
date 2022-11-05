@@ -2,13 +2,8 @@
   <div id="main-page">
     <div class="main-content">
       <v-row no-gutters>
-        <v-col class="achv-rate">
-          <v-card class="pa-3 chart-box">
-            <chart-component :persent="persent" />
-          </v-card>
-        </v-col>
-        <v-col>
-          <v-card class="pa-3 todos-card">
+        <v-col cols="12">
+          <v-card class="pa-3 todos-card" max-width="1000">
             <v-row>
               <v-col>
                 <font-awesome-icon
@@ -40,6 +35,11 @@
             </div>
           </v-card>
         </v-col>
+        <v-col cols="12" class="achv-rate">
+          <v-card class="pa-3 chart-box" max-width="1000">
+            <chart-component class="chart-component" :persent="persent" />
+          </v-card>
+        </v-col>
       </v-row>
     </div>
     <div class="todo-lists"></div>
@@ -49,6 +49,7 @@
 <script>
 import TodoCard from "@/components/TodoCard.vue";
 import ChartComponent from "@/components/ChartComponent.vue";
+// import ListBox from "@/components/common/ListBox.vue";
 // import TodoLists from "@/components/TodoLists.vue";
 export default {
   components: { TodoCard, ChartComponent },
@@ -151,12 +152,24 @@ export default {
   margin-left: auto;
   margin-right: auto;
 }
+.main-content {
+  /* margin-top: 10px; */
+  background-color: white;
+  height: 100vh;
+  width: 90%;
+  margin-left: auto;
+  margin-right: auto;
+}
+
 .chart-box {
-  height: 550px;
+  margin-left: auto;
+  margin-right: auto;
 }
 .todos-card {
   max-height: 550px;
   overflow: scroll;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 .todos-card::-webkit-scrollbar {
@@ -171,10 +184,6 @@ export default {
   to {
     transform: translate(100px, 0px);
   }
-}
-.main-content {
-  background: black;
-  height: 550px;
 }
 .todo-button {
   font-size: 50px;
@@ -196,7 +205,4 @@ export default {
 .todo-lists {
   background: white;
 }
-/* div.btn__content {
-  padding: 30px;
-} */
 </style>

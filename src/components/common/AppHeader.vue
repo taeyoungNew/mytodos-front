@@ -37,13 +37,17 @@
               <v-list-item-icon>
                 <v-icon>mdi-account-multiple</v-icon>
               </v-list-item-icon>
-              <v-list-item-title> 다른 사람들 보러가기</v-list-item-title>
+              <v-list-item-title @click="sharePage">
+                다른 사람들 보러가기
+              </v-list-item-title>
             </v-list-item>
             <v-list-item link>
               <v-list-item-icon>
                 <v-icon>mdi-star</v-icon>
               </v-list-item-icon>
-              <v-list-item-title>지금까지 리스트 보기</v-list-item-title>
+              <v-list-item-title @click="showExLists">
+                지금까지 리스트 보기
+              </v-list-item-title>
             </v-list-item>
             <v-list-item link>
               <v-list-item-icon>
@@ -59,7 +63,7 @@
       <v-row>
         <v-col>
           <div class="home-button">
-            <router-link to="/">HOME</router-link>
+            <router-link to="/MainView">HOME</router-link>
           </div>
         </v-col>
       </v-row>
@@ -71,7 +75,7 @@
             ></v-app-bar-nav-icon>
           </v-col>
           <v-col cols="3" v-else>
-            <router-link to="/SignupView">로그인/회원가입</router-link>
+            <v-list-item @click="loginLogout">로그인/회원가입</v-list-item>
           </v-col>
         </v-row>
       </template>
@@ -98,13 +102,22 @@ export default {
     },
   },
   methods: {
+    loginLogout() {
+      this.$router.push("/SignupView").catch(() => {});
+    },
     showLists() {
-      this.$router.push("/MainView");
+      this.$router.push("/MainView").catch(() => {});
     },
     async onLogout() {
       await this.$store.dispatch("ON_LOGOUT");
-      this.$router.push("/");
+      this.$router.push("/").catch(() => {});
       this.drawer = false;
+    },
+    showExLists() {
+      this.$router.push("/ExTodoMyList").catch(() => {});
+    },
+    sharePage() {
+      this.$router.push("/ShareTodos").catch(() => {});
     },
   },
 };

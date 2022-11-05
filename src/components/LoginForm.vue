@@ -51,6 +51,16 @@ export default {
       });
     },
   },
+  computed: {
+    setMe() {
+      return this.$store.state.setMe;
+    },
+  },
+  watch: {
+    setMe() {
+      this.$router.push("/MainView");
+    },
+  },
 };
 </script>
 
