@@ -1,14 +1,13 @@
 <template>
   <div>
-    <v-app-bar>
+    <v-app-bar class="app-bar" color="#D6EBEE">
       <v-card class="navi-card" v-if="drawer">
         <v-navigation-drawer permanent>
           <v-list>
             <v-list-item class="px-2">
               <v-list-item-avatar>
-                <v-img
-                  src="https://randomuser.me/api/portraits/women/85.jpg"
-                ></v-img>
+                <v-img src="https://randomuser.me/api/portraits/women/85.jpg">
+                </v-img>
               </v-list-item-avatar>
             </v-list-item>
 
@@ -70,9 +69,8 @@
       <template>
         <v-row class="login-signup" no-gutters justify="end">
           <v-col cols="2" v-if="setMe !== null">
-            <v-app-bar-nav-icon
-              @click.stop="drawer = !drawer"
-            ></v-app-bar-nav-icon>
+            <v-app-bar-nav-icon @click.stop="drawer = !drawer" color="#606A6B">
+            </v-app-bar-nav-icon>
           </v-col>
           <v-col cols="3" v-else>
             <v-list-item @click="loginLogout">로그인/회원가입</v-list-item>
@@ -117,13 +115,16 @@ export default {
       this.$router.push("/ExTodoMyList").catch(() => {});
     },
     sharePage() {
-      this.$router.push("/ShareTodos").catch(() => {});
+      // this.$router.push("/ShareTodos").catch(() => {});
     },
   },
 };
 </script>
 
 <style scoped>
+.app-bar {
+  background-color: #6fafb8;
+}
 .navi-card {
   position: absolute;
   top: 64px;
@@ -134,6 +135,7 @@ export default {
 } */
 .home-button {
   margin: 20px;
+  text-decoration-color: #606a6b;
 }
 /* .logoutBtn {
   cursor: pointer;

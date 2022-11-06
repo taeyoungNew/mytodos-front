@@ -146,7 +146,7 @@ export default {
 
 <style scoped>
 #main-page {
-  background-color: antiquewhite;
+  background-color: #d6ebee;
   width: 1250px;
   height: 100vh;
   margin-left: auto;
@@ -162,14 +162,17 @@ export default {
 }
 
 .chart-box {
+  margin-top: 10px;
   margin-left: auto;
   margin-right: auto;
 }
 .todos-card {
   max-height: 550px;
   overflow: scroll;
+  margin-top: 10px;
   margin-left: auto;
   margin-right: auto;
+  background-color: #6fafb8;
 }
 
 .todos-card::-webkit-scrollbar {

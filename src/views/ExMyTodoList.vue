@@ -2,7 +2,10 @@
   <div id="main-page">
     <div class="main-content">
       <v-row>
-        <v-col>
+        <v-col cols="12" v-if="this.$store.state.loadMyExTodos.length === 0">
+          <v-card class="pa-3"> 예전 Todo리스트가 없어요. </v-card>
+        </v-col>
+        <v-col V-else>
           <list-box
             class="list-box"
             v-for="(exTodo, index) in exTodos"
@@ -53,6 +56,7 @@ export default {
       // console.log("this.exTodos  = ", this.exTodos);
     },
   },
+
   watch: {
     exTodos: {
       deep: true,
@@ -67,7 +71,7 @@ export default {
 
 <style scoped>
 #main-page {
-  background-color: antiquewhite;
+  background-color: #d6ebee;
   width: 1250px;
   height: 100vh;
   margin-left: auto;

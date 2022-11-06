@@ -18,7 +18,7 @@
           >
             <font-awesome-icon icon="fa-solid fa-check" />
           </span>
-          <div class="content" :style="{ color: check }">
+          <div class="content" :style="{ color: check, textDecoration: done }">
             {{ todo.todoContent }}
           </div>
           <font-awesome-icon
@@ -51,9 +51,10 @@ export default {
       myTodo: [],
       edit: false,
       checkColor: "gray",
-      check: "black",
+      check: "#40666B",
       todoStatus: this.todo.done,
       editContent: "",
+      done: "none",
     };
   },
   created() {
@@ -62,11 +63,13 @@ export default {
   methods: {
     checkTodoStatus() {
       if (this.todo.done === true) {
-        this.checkColor = "green";
+        this.checkColor = "#6FAFB8";
         this.check = "gray";
+        this.done = "line-through";
       } else if (this.todo.done === false) {
         this.checkColor = "gray";
-        this.check = "black";
+        this.check = "#40666B";
+        this.done = "none";
       }
     },
     editTodo() {
@@ -96,11 +99,13 @@ export default {
         .dispatch("CHECK_TODO", payload)
         .then(() => {
           if (this.todoStatus === true) {
-            this.checkColor = "green";
+            this.checkColor = "#6FAFB8";
             this.check = "gray";
+            this.done = "line-through";
           } else if (this.todoStatus === false) {
             this.checkColor = "gray";
-            this.check = "black";
+            this.check = "#40666B";
+            this.done = "none";
           }
           this.$emit("checkTodo");
         })
@@ -112,19 +117,21 @@ export default {
       this.$store.dispatch("REMOVE_TODO", this.todo.id);
     },
   },
-  // watch: {
-  //   todo(payload) {
-  //     console.log("todo값 변경감지");
-  //     this.myTodo = payload;
-  //   },
-  // },
+  watch: {
+    done(payload) {
+      console.log("done값 변경감지", payload);
+    },
+  },
 };
 </script>
 
 <style scoped>
+.todo-card {
+  background-color: white;
+}
 .edit-icon {
   cursor: pointer;
-  font-size: 20px;
+  font-size: 25px;
   position: absolute;
   top: 35%;
   left: 89%;
@@ -139,7 +146,7 @@ export default {
 }
 .remove-icon {
   cursor: pointer;
-  font-size: 20px;
+  font-size: 23px;
   position: absolute;
   top: 35%;
   left: 95%;
@@ -148,6 +155,7 @@ export default {
   color: rgb(172, 69, 69);
 }
 .check-icon {
+  font-size: 25px;
   padding: 5px;
   padding-right: 10px;
   cursor: pointer;
@@ -155,5 +163,6 @@ export default {
 
 .content {
   display: inline-block;
+  font-size: 23px;
 }
 </style>

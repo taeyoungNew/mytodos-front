@@ -48,6 +48,7 @@ export default {
         datasets: [
           {
             data: [0, 100],
+            backgroundColor: "#6fafb8",
           },
         ],
       },
