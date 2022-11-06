@@ -1,15 +1,15 @@
 <template>
   <div>
-    <v-card class="mx-auto" color="#26c6da" dark max-width="1000">
-      <v-card outlined class="mx-auto" color="#26c6da" max-width="1000">
+    <v-card class="mx-auto" color="#6fafb8" dark max-width="1000">
+      <v-card outlined class="mx-auto" color="#6fafb8" max-width="1000">
         <v-card-title>
           <v-icon large left> mdi-notebook-edit </v-icon>
           {{ exTodo[0].updateTime.substr(0, 10) }}
         </v-card-title>
         <div v-for="(item, index) in exTodo" :key="index">
           <v-card-text class="pa-5 font-weight-bold">
-            <v-icon v-if="item.done" left>mdi-check-bold</v-icon>
-            <v-icon v-else left>mdi-check-outline</v-icon>
+            <v-icon v-if="item.done" left>mdi-check-circle</v-icon>
+            <v-icon v-else left>mdi-check-circle-outline</v-icon>
             {{ item.todoContent }}
           </v-card-text>
         </div>

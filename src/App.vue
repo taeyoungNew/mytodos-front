@@ -15,11 +15,14 @@ export default {
 };
 </script>
 
-<style scoped>
+<style>
 #app {
-  width: 2000px;
+  /* width: 2000px; */
   margin-left: auto;
   margin-right: auto;
+  background-color: #606a6b;
+  height: 100vh;
+  overflow: hidden;
 }
 .app-bar {
   width: 1250px;
