@@ -1,19 +1,23 @@
 <template>
   <div id="main">
-    <template>
+    <div class="main-content">
       <v-row no-gutters class="btns">
-        <v-col>
+        <v-col cols="6">
           <v-card class="pa-3 card-btn" @click="formBtn(login)"> login </v-card>
         </v-col>
         <v-col>
-          <v-card class="pa-3 card-btn" @click="formBtn(singup)">
+          <v-card cols="6" class="pa-3 card-btn" @click="formBtn(singup)">
             signup
           </v-card>
         </v-col>
+        <v-col cols="12">
+          <login-form v-if="loginBtn" />
+        </v-col>
+        <v-col cols="12">
+          <signup-form v-if="signupBtn" />
+        </v-col>
       </v-row>
-      <login-form v-if="loginBtn" />
-      <signup-form v-if="signupBtn" />
-    </template>
+    </div>
   </div>
 </template>
 
@@ -62,18 +66,27 @@ export default {
 
 <style scoped>
 #main {
-  background-color: antiquewhite;
+  background-color: #d6ebee;
   width: 1250px;
   height: 100vh;
   margin-left: auto;
   margin-right: auto;
 }
+.main-content {
+  /* margin-top: 10px; */
+  background-color: white;
+  height: 100vh;
+  width: 90%;
+  margin-left: auto;
+  margin-right: auto;
+}
 .btns {
-  width: 1000px;
+  width: 100%;
   margin-left: auto;
   margin-right: auto;
 }
 .card-btn {
+  color: #606a6b;
   text-align: center;
   cursor: pointer;
   margin-top: 10px;

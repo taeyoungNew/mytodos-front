@@ -2,12 +2,12 @@
   <div>
     <v-card class="mx-auto" color="#6fafb8" dark max-width="1000">
       <v-card outlined class="mx-auto" color="#6fafb8" max-width="1000">
-        <v-card-title>
+        <v-card-title class="card-font">
           <v-icon large left> mdi-notebook-edit </v-icon>
           {{ exTodo[0].updateTime.substr(0, 10) }}
         </v-card-title>
         <div v-for="(item, index) in exTodo" :key="index">
-          <v-card-text class="pa-5 font-weight-bold">
+          <v-card-text class="pa-5 font-weight-bold card-font">
             <v-icon v-if="item.done" left>mdi-check-circle</v-icon>
             <v-icon v-else left>mdi-check-circle-outline</v-icon>
             {{ item.todoContent }}
@@ -61,4 +61,9 @@ export default {
 };
 </script>
 
-<style></style>
+<style scoped>
+.card-font {
+  color: white;
+  font-size: 18px;
+}
+</style>

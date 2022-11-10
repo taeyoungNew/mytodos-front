@@ -30,4 +30,10 @@ export default {
   margin-right: auto;
   z-index: 1000;
 }
+* {
+  font-family: "KOFIHDrLEEJWTTF-B";
+  font-weight: 700;
+  font-style: normal;
+  color: #606a6b;
+}
 </style>

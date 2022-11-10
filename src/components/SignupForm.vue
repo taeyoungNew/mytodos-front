@@ -2,7 +2,7 @@
   <div>
     <v-container>
       <v-card class="pa-3 signup-card">
-        <v-subheader>회원가입</v-subheader>
+        <v-subheader></v-subheader>
         <v-form
           class="signup-form"
           @submit.prevent="signupForm"
@@ -86,8 +86,8 @@ export default {
 
 <style scoped>
 .signup-card {
-  width: 1000px;
-  min-height: 30vh;
+  width: 100%;
+  min-height: 40vh;
   margin: 0 auto 0 auto;
 }
 .signup-form {
