@@ -37,6 +37,7 @@ export default new Vuex.Store({
     },
     ON_LOGIN(state, payload) {
       state.setMe = payload.data;
+      localStorage.setItem("setMe", JSON.stringify(payload));
     },
     ON_LOGOUT(state) {
       state.setMe = null;
@@ -66,6 +67,10 @@ export default new Vuex.Store({
       console.log(payload);
       const index = state.todoList.findIndex((x) => x.id === payload.id);
       state.todoList[index].todoContent = payload.todoContent;
+    },
+    GET_STORAGEDATA(state) {
+      const getItem = JSON.parse(localStorage.getItem("setMe"));
+      state.setMe = getItem.data;
     },
   },
   actions: {
@@ -125,8 +130,8 @@ export default new Vuex.Store({
           console.log(err);
         });
     },
-    ON_LOGOUT(context) {
-      axios
+    async ON_LOGOUT(context) {
+      await axios
         .post(
           "http://localhost:3010/user/logout",
           {},
@@ -239,6 +244,9 @@ export default new Vuex.Store({
           console.log(err);
         });
     },
+  },
+  GET_STORAGEDATA(context) {
+    context.commit("GET_STORAGEDATA");
   },
   modules: {},
 });

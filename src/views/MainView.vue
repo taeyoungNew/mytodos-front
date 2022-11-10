@@ -25,7 +25,7 @@
                 </v-text-field>
               </v-col>
             </v-row>
-            <div id="list-box">
+            <div>
               <todo-card
                 v-for="todo in getMyTodos"
                 :key="todo.id"
@@ -37,7 +37,7 @@
         </v-col>
         <v-col cols="12" class="achv-rate">
           <v-card class="pa-3 chart-box" max-width="1000">
-            <chart-component class="chart-component" :persent="persent" />
+            <chart-component :persent="persent" />
           </v-card>
         </v-col>
       </v-row>

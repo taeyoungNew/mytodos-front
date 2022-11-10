@@ -2,7 +2,7 @@
   <div>
     <v-container>
       <v-card class="pa-3 login-card">
-        <v-subheader>로그인</v-subheader>
+        <v-subheader></v-subheader>
         <v-form v-model="valid" class="signup-form" @submit.prevent="onLogin">
           <v-text-field
             class="mt-3"
@@ -43,7 +43,19 @@ export default {
       password: "",
     };
   },
+  created() {
+    this.getStorage();
+  },
   methods: {
+    getStorage() {
+      if (JSON.parse(localStorage.getItem("setMe"))) {
+        console.log(
+          'localStorage.getItem("setMe") = ',
+          localStorage.getItem("setMe")
+        );
+        this.$store.commit("GET_STORAGEDATA");
+      }
+    },
     onLogin() {
       this.$store.dispatch("ON_LOGIN", {
         email: this.email,
@@ -66,8 +78,8 @@ export default {
 
 <style scoped>
 .login-card {
-  width: 1000px;
-  min-height: 30vh;
+  width: 100%;
+  min-height: 40vh;
   margin: 0 auto 0 auto;
 }
 .signup-form {

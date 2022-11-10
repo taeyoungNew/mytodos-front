@@ -61,8 +61,8 @@
       </v-card>
       <v-row>
         <v-col>
-          <div class="home-button">
-            <router-link to="/MainView">HOME</router-link>
+          <div>
+            <router-link class="home-button" to="/MainView">HOME</router-link>
           </div>
         </v-col>
       </v-row>
@@ -73,7 +73,9 @@
             </v-app-bar-nav-icon>
           </v-col>
           <v-col cols="3" v-else>
-            <v-list-item @click="loginLogout">로그인/회원가입</v-list-item>
+            <v-list-item style="color: #606a6b" link @click="loginLogout">
+              로그인/회원가입
+            </v-list-item>
           </v-col>
         </v-row>
       </template>
@@ -107,6 +109,7 @@ export default {
       this.$router.push("/MainView").catch(() => {});
     },
     async onLogout() {
+      localStorage.clear();
       await this.$store.dispatch("ON_LOGOUT");
       this.$router.push("/").catch(() => {});
       this.drawer = false;
@@ -115,7 +118,7 @@ export default {
       this.$router.push("/ExTodoMyList").catch(() => {});
     },
     sharePage() {
-      // this.$router.push("/ShareTodos").catch(() => {});
+      alert("준비중입니다.");
     },
   },
 };
@@ -135,7 +138,8 @@ export default {
 } */
 .home-button {
   margin: 20px;
-  text-decoration-color: #606a6b;
+  color: #606a6b;
+  /* text-decoration-color: ; */
 }
 /* .logoutBtn {
   cursor: pointer;

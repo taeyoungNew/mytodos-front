@@ -155,7 +155,7 @@ export default {
   color: rgb(172, 69, 69);
 }
 .check-icon {
-  font-size: 25px;
+  font-size: 20px;
   padding: 5px;
   padding-right: 10px;
   cursor: pointer;
@@ -163,6 +163,6 @@ export default {
 
 .content {
   display: inline-block;
-  font-size: 23px;
+  font-size: 18px;
 }
 </style>
