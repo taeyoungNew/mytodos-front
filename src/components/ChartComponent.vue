@@ -42,13 +42,13 @@ export default {
   },
   data() {
     return {
+      chartLabel: "",
       isPersent: 0,
       chartData: {
-        labels: ["오늘 달성%"],
         datasets: [
           {
+            label: this.chartLabel,
             data: [0, 100],
-            backgroundColor: "#6fafb8",
           },
         ],
       },
@@ -77,6 +77,26 @@ export default {
     };
   },
   methods: {
+    changeLabel(persent) {
+      let label = "";
+
+      if (persent > 0 && persent < 30) {
+        label = "천리길도 한걸음부터";
+      } else if (persent >= 30 && persent < 50) {
+        label = "벌써 반이나 해냈어요!";
+      } else if (persent >= 50 && persent < 60) {
+        label = "이제 반 밖에 안남았어요ㅎㅎㅎ";
+      } else if (persent >= 60 && persent < 100) {
+        label = "거의 다 와가요 힘내요!!";
+      } else if (persent == 100) {
+        label = "오늘도 100프로 달성!!!";
+      } else {
+        label = "오늘도 화이팅";
+      }
+      console.log("label = ", label);
+      this.chartData.datasets[0].label = label;
+      // return label;
+    },
     async checkTodo() {
       let count = 0;
       let todos = 0;
@@ -88,15 +108,14 @@ export default {
         todos++;
       });
       let persent = (count / todos) * 100;
-      // console.log("persent = ", persent);
-      //  = persent;
       this.isPersent = persent;
-      // console.log("chart - ", this.chartData.datasets[0].data[0]);
       this.chartData = {
-        labels: ["오늘 달성%"],
+        labels: [`오늘 todo 달성${this.isPersent}%`],
         datasets: [
           {
+            label: "오늘도 화이팅",
             data: [persent, 100],
+            backgroundColor: "#6fafb8",
           },
         ],
       };
@@ -106,6 +125,9 @@ export default {
     getMyTodos() {
       return this.$store.getters.GETTERS_MY_TODOS;
     },
+    chartPersent() {
+      return this.isPersent;
+    },
   },
   // deep속성을 추가하여 배열속 값까지 변경되는 부분을 캐치
   watch: {
@@ -114,8 +136,13 @@ export default {
       async handler() {
         // console.log("변경감지");
         await this.checkTodo();
-        this.chartData.datasets[0].data[0] = this.persent;
+        // if (this.chartData.datasets[0].data[0] > 0) {
+        //   this.changeLabel(this.chartData.datasets[0].data[0]);
+        // }
       },
+    },
+    chartPersent(persent) {
+      this.changeLabel(persent);
     },
   },
 };
