@@ -1,17 +1,31 @@
 <template>
   <v-app id="app">
     <app-header class="app-bar" />
+    <success-signup v-if="messageStatus" class="success-message" />
     <router-view />
   </v-app>
 </template>
 
 <script>
 import AppHeader from "@/components/common/AppHeader.vue";
+import SuccessSignup from "@/components/common/SuccessSignup.vue";
 export default {
-  components: { AppHeader },
+  components: { AppHeader, SuccessSignup },
   name: "App",
 
-  data: () => ({}),
+  data: () => ({
+    messageStatus: false,
+  }),
+  computed: {
+    checkSignupMessage() {
+      return this.$store.state.signupMessage;
+    },
+  },
+  watch: {
+    checkSignupMessage(value) {
+      this.messageStatus = value;
+    },
+  },
 };
 </script>
 
@@ -28,7 +42,13 @@ export default {
   width: 1250px;
   margin-left: auto;
   margin-right: auto;
-  z-index: 1000;
+  z-index: 1;
+}
+.success-message {
+  position: absolute;
+  width: 100%;
+  height: 100vw;
+  z-index: 1;
 }
 * {
   font-family: "KOFIHDrLEEJWTTF-B";

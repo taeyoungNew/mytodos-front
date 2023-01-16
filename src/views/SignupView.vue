@@ -24,6 +24,7 @@
 <script>
 import SignupForm from "@/components/SignupForm.vue";
 import LoginForm from "@/components/LoginForm.vue";
+// import SuccessSignup from "@/components/common/SuccessSignup.vue";
 export default {
   components: { SignupForm, LoginForm },
   data() {
@@ -50,6 +51,9 @@ export default {
     setMe() {
       return this.$store.state.setMe;
     },
+    checkSignupMessage() {
+      return this.$store.state.signupMessage;
+    },
   },
   watch: {
     setMe(value) {
@@ -59,6 +63,12 @@ export default {
         });
       }
     },
+    checkSignupMessage(payload) {
+      if (payload === false) {
+        let login = "login";
+        this.formBtn(login);
+      }
+    },
   },
   middleware: "anonymous",
 };
@@ -66,6 +76,7 @@ export default {
 
 <style scoped>
 #main {
+  position: relative;
   background-color: #d6ebee;
   width: 1250px;
   height: 100vh;
@@ -90,5 +101,10 @@ export default {
   text-align: center;
   cursor: pointer;
   margin-top: 10px;
+}
+.success-message {
+  position: absolute;
+  top: 0%;
+  z-index: auto;
 }
 </style>

@@ -13,6 +13,7 @@ export default new Vuex.Store({
     loadMyExTodos: [],
     exTodos: [],
     persent: 0,
+    signupMessage: false,
   },
   getters: {
     GETTERS_MY_TODOS(state) {
@@ -20,6 +21,9 @@ export default new Vuex.Store({
     },
     GET_MY_EXTODOS(state) {
       return state.loadMyExTodos;
+    },
+    CHECK_SIGNUP_MESSAGE(state) {
+      return state.signupMessage;
     },
   },
   mutations: {
@@ -44,6 +48,9 @@ export default new Vuex.Store({
       state.todoList = [];
       state.loadTodos = [];
       state.loadMyExTodos = [];
+    },
+    ON_SIGNUP(state, payload) {
+      state.signupMessage = payload;
     },
     LOAD_MY_TODOS(state, payload) {
       state.todoList = payload;
@@ -74,6 +81,9 @@ export default new Vuex.Store({
     },
   },
   actions: {
+    GO_LOGIN(context, payload) {
+      context.commit("ON_SIGNUP", payload);
+    },
     EX_TODOS(context, payload) {
       // console.log("EX_TODOS = ", payload);
       context.dispatch("EX_TODOS", payload);
